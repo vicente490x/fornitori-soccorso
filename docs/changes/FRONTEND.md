@@ -1,5 +1,14 @@
 # Frontend: dashboard operativa, centrale e autista
 
+## Aggiornamento layout dashboard — 05/11/2026
+
+- Riquadri uniformi: 2 colonne su telefono, 3 nelle larghezze intermedie,
+  6 da 1200 px; nessun riquadro isolato a larghezza piena.
+- Spaziatura, numeri e testi coerenti; focus visibile da tastiera.
+- Barra superiore opaca durante lo scorrimento.
+- In ambiente demo la barra informativa e quella di navigazione occupano
+  righe distinte, anche quando il testo informativo va a capo.
+
 > **Record storico:** branch già fuso in `main`. Descrive la situazione al momento del merge. Dopo il merge il riquadro "Rifiutate da 3 autisti" è stato tolto: i riquadri sono 6 e il dato resta nel contatore della coda critica. Lo stato attuale è nel [manuale utente](../manuals/MANUALE_UTENTE.md).
 
 Branch `feature/frontend-dashboard`. **Va fuso dopo `feature/backend-operativita`.**

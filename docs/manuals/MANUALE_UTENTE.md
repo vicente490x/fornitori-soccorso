@@ -1,6 +1,6 @@
 # Manuale utente FORNITORI
 
-**Codice:** FOR-USER-001 · **Versione:** 2.1 · **Data:** 05/11/2026
+**Codice:** FOR-USER-001 · **Versione:** 2.2 · **Data:** 05/11/2026
 **Destinatari:** responsabile centrale, autista e cliente
 **Responsabili:** Francesco Valeriano, Giuseppe Cangellosi, Marika Sancilio, Marco Colucci
 
@@ -23,6 +23,13 @@ separato dalla pagina pubblica informativa.
    viene mostrato sotto il modulo; non ripetere login con account non autorizzati.
 
 ### Dashboard operativa
+
+I sei riquadri riepilogativi hanno dimensioni uniformi. Su telefono sono disposti
+su due colonne, su tablet e PC compatti su tre colonne e da 1200 px su una riga
+di sei colonne. Ogni riquadro continua ad aprire le missioni filtrate per categoria.
+La barra superiore ha uno sfondo opaco per mantenere leggibili i comandi durante
+lo scorrimento. Il focus da tastiera sui riquadri è evidenziato.
+
 
 - In alto, la **Coda critica** elenca le missioni che richiedono un intervento: polizza da verificare, rifiutate da tre autisti, richieste di supporto aperte. Ogni riga ha le azioni dirette. Sopra l'elenco, i contatori **Verifica polizza**, **Rifiutate da 3 autisti** e **Supporto aperto** mostrano da dove nascono le critiche e aprono le missioni corrispondenti.
 - I riquadri **Critiche**, **Da assegnare**, **KO**, **OK**, **Pending** e **Annullate** aprono l'elenco delle missioni filtrato. Lo stesso vale per le barre del grafico **Missioni per stato**.
