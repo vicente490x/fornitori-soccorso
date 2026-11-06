@@ -87,6 +87,10 @@ rimandano al portale locale senza usare il bot della repository originale.
 
 ## Bot Telegram sulla Preview del dominio stabile
 
+**Username corretto:** [@SoccorsoStradaleBot](https://t.me/SoccorsoStradaleBot).
+Il token Preview deve corrispondere a questo bot; il controller lo verifica tramite `getMe` prima di registrare il webhook.
+I pulsanti Telegram sulla home della demo devono aprire il bot, senza essere reindirizzati a `/demo.html`.
+
 Il progetto Vercel mantiene il dominio `fornitori-soccorso-demo.vercel.app` associato
 al branch `main`. `TELEGRAM_BOT_TOKEN` è salvato come Secret per Preview;
 `FORNITORI_API_URL` è disponibile in Preview. Nessun token viene versionato.

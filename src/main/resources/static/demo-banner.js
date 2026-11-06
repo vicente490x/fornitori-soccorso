@@ -14,11 +14,6 @@
       link.textContent = "Cambia profilo ↗";
       banner.append(label, link);
       document.body.prepend(banner);
-      document.querySelectorAll('a[href^="https://t.me/"]').forEach(anchor => {
-        anchor.href = "/demo.html";
-        anchor.removeAttribute("target");
-        anchor.setAttribute("aria-label", "Esplora la demo");
-        if (anchor.classList.contains("contact-button")) anchor.textContent = "Esplora la demo →";
-      });
+      // La Preview usa il bot Telegram dimostrativo: lascia accessibili i link t.me.
     }).catch(() => {});
 })();

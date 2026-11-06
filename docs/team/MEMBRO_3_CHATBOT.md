@@ -34,10 +34,14 @@ Il bot non accede al DB e usa `/api/v1/chat/*` con `FORNITORI_CHAT_TOKEN`. La ri
 
 ## Esecuzione
 
-Il bot risponde solo se `python3 -m fornitori_chatbot --telegram --http` gira su un server sempre
-acceso, con `TELEGRAM_BOT_TOKEN` e `FORNITORI_CHAT_TOKEN` impostati e il backend raggiungibile. Il sito
-apre `t.me/Fornitori_Soccorso_Bot`: il token deve essere di quel bot, perché il codice lo riconosce
-solo dal token. Vercel ospita solo il frontend e non può far girare il bot in polling.
+In Preview Vercel (`main`), il chatbot è gestito dal webhook Java
+`/api/v1/telegram/webhook` con conversazioni persistenti nel database Neon demo.
+Il bot corretto è [@SoccorsoStradaleBot](https://t.me/SoccorsoStradaleBot):
+il token `TELEGRAM_BOT_TOKEN` in Preview deve appartenere esattamente a questo bot.
+Il server verifica lo username tramite `getMe` prima di registrare il webhook.
+Il comando Python `python3 -m fornitori_chatbot --telegram --http` è destinato
+al lavoro locale, non va eseguito contemporaneamente al webhook pubblico.
+Le notifiche automatiche asincrone richiedono ancora un dispatcher dedicato.
 
 ## Limiti noti della demo
 

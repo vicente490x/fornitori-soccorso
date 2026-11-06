@@ -126,6 +126,9 @@ impostare uguale su backend e chatbot; se manca, rispondono `401`. Vedi [chatbot
 
 ## Chatbot in produzione
 
+**Bot Telegram della demo:** [@SoccorsoStradaleBot](https://t.me/SoccorsoStradaleBot).
+Il token Preview è verificato con `getMe` prima di registrare il webhook, evitando di collegare per errore un altro bot.
+
 Per la **Preview `main` Vercel**, il bot usa il webhook HTTPS integrato nel backend Java
 (`/api/v1/telegram/webhook`). Il processo Python con long polling rimane soltanto
 per sviluppo locale e NON va eseguito insieme al webhook.

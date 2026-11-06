@@ -49,6 +49,7 @@ import org.springframework.web.server.ResponseStatusException;
 public class TelegramWebhookController {
     private static final Logger LOG = LoggerFactory.getLogger(TelegramWebhookController.class);
     private static final String PUBLIC_URL = "https://fornitori-soccorso-demo.vercel.app";
+    private static final String EXPECTED_BOT_USERNAME = "SoccorsoStradaleBot";
     private static final Pattern PLATE = Pattern.compile("^(?=.*[A-Z])(?=.*[0-9])[A-Z0-9]{5,10}$");
     private static final Pattern PHONE = Pattern.compile("^\\+?[0-9][0-9 ]{5,19}$");
     private static final String WELCOME = "Ciao, sono Soccorso Stradale Bot. Per attivare un soccorso scrivi la targa del veicolo; per conoscere lo stato scrivi STATO.";
@@ -93,6 +94,15 @@ public class TelegramWebhookController {
             return;
         }
         try {
+            Map<?, ?> identity = telegram.get().uri("/getMe").retrieve().body(Map.class);
+            Object botDetails = identity == null ? null : identity.get("result");
+            Object actualUsername = botDetails instanceof Map<?, ?> details ? details.get("username") : null;
+            if (!(actualUsername instanceof String actual)
+                    || !EXPECTED_BOT_USERNAME.equalsIgnoreCase(actual)) {
+                LOG.warn("Webhook non registrato: TELEGRAM_BOT_TOKEN non corrisponde a @{}",
+                        EXPECTED_BOT_USERNAME);
+                return;
+            }
             telegram.post().uri("/setWebhook").body(Map.of(
                     "url", PUBLIC_URL + "/api/v1/telegram/webhook",
                     "secret_token", new String(expectedSecret, StandardCharsets.UTF_8),
@@ -100,7 +110,7 @@ public class TelegramWebhookController {
                     "drop_pending_updates", false,
                     "max_connections", 1
             )).retrieve().toBodilessEntity();
-            LOG.info("Webhook Telegram registrato sulla Preview main");
+            LOG.info("Webhook Telegram registrato sulla Preview main per @{}", EXPECTED_BOT_USERNAME);
         } catch (RuntimeException ex) {
             // Non impedire l'avvio del sito per un problema temporaneo di Telegram.
             LOG.warn("Webhook Telegram non registrato: {}", ex.getClass().getSimpleName());

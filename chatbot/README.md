@@ -63,7 +63,7 @@ mai scritto in file del repo o in chat.
 
 In Preview Vercel si usa il nuovo endpoint Java `/api/v1/telegram/webhook`, non
 il processo Python. È necessario applicare la migrazione `database/13_telegram_webhook.sql`
-al database demo. Il sito apre `t.me/Fornitori_Soccorso_Bot`: il token deve
+al database demo. Il sito apre `t.me/SoccorsoStradaleBot`: il token deve
 appartenere a quel bot. Non eseguire polling Python contemporaneamente al webhook.
 
 ## Test
