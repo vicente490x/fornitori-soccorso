@@ -71,6 +71,20 @@ public class SecurityConfig {
         return new HttpSessionCsrfTokenRepository();
     }
 
+    /** Solo il webhook Telegram ammette chiamate anonime, verificate tramite header segreto nel controller. */
+    @Bean
+    @Order(0)
+    SecurityFilterChain telegramWebhookSecurity(HttpSecurity http) throws Exception {
+        http.securityMatcher("/api/v1/telegram/webhook")
+                .csrf(csrf -> csrf.disable())
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .authorizeHttpRequests(authorize -> authorize.anyRequest().permitAll())
+                .requestCache(cache -> cache.disable())
+                .formLogin(form -> form.disable())
+                .httpBasic(basic -> basic.disable());
+        return http.build();
+    }
+
     @Bean
     @Order(1)
     SecurityFilterChain chatSecurityFilterChain(
