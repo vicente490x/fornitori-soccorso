@@ -2,7 +2,7 @@
 
 **Aggiornamento:** 06/11/2026 · **Sorgente:** branch `main` di [vicente490x/fornitori-soccorso](https://github.com/vicente490x/fornitori-soccorso).
 
-I nove Word principali e cinque Word integrativi riportati qui sono stati **rigenerati dai rispettivi Markdown canonici** con impaginazione e titoli coerenti. Sono stati verificati i pacchetti ZIP/OOXML, ma non ancora la resa pagina per pagina in Microsoft Word.
+I nove Word principali e quattro Word integrativi riportati qui sono stati **rigenerati dai rispettivi Markdown canonici** con impaginazione e titoli coerenti. Sono stati verificati i pacchetti ZIP/OOXML, ma non ancora la resa pagina per pagina in Microsoft Word.
 
 | Documento Word | Sorgente canonica |
 |---|---|
