@@ -14,6 +14,8 @@ import org.springframework.http.CacheControl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.context.SecurityContextRepository;
 import org.springframework.security.web.csrf.CsrfTokenRepository;
@@ -30,6 +32,9 @@ import org.springframework.web.server.ResponseStatusException;
 @RequestMapping("/api/v1/demo")
 public class DemoController {
     private static final Map<String, String> ACCOUNTS = Map.of(
+            "centrale", "centrale@recuveicol.example", "autista", "luca.bianchi@recuveicol.example");
+    // Transizione senza interruzioni: accetta le vecchie email fino all'applicazione della migrazione 14.
+    private static final Map<String, String> LEGACY_ACCOUNTS = Map.of(
             "centrale", "responsabile@demo.it", "autista", "autista1@demo.it");
     private final DatabaseUserDetailsService users;
     private final AuthService auth;
@@ -67,7 +72,13 @@ public class DemoController {
         if (email == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Profilo demo non valido");
         }
-        var user = users.loadUserByUsername(email);
+        UserDetails user;
+        try {
+            user = users.loadUserByUsername(email);
+        } catch (UsernameNotFoundException notMigrated) {
+            // Solo i due profili sintetici: nessun fallback per utenti ordinari o su altri database.
+            user = users.loadUserByUsername(LEGACY_ACCOUNTS.get(profile));
+        }
         var authentication = UsernamePasswordAuthenticationToken.authenticated(user, null, user.getAuthorities());
         if (request.getSession(false) != null) request.changeSessionId();
         csrf.saveToken(null, request, response);
@@ -75,6 +86,6 @@ public class DemoController {
         context.setAuthentication(authentication);
         SecurityContextHolder.setContext(context);
         contexts.saveContext(context, request, response);
-        return ResponseEntity.ok().cacheControl(CacheControl.noStore()).body(auth.currentUser(email));
+        return ResponseEntity.ok().cacheControl(CacheControl.noStore()).body(auth.currentUser(user.getUsername()));
     }
 }

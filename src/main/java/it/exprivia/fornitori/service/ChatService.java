@@ -113,8 +113,12 @@ public class ChatService {
         String company = companies.findById(customer.get().getCompanyId())
                 .map(InsuranceCompany::getNome)
                 .orElseThrow(() -> new IllegalStateException("Customer company is missing"));
+        String customerName = customer.get().getNome();
+        if (customer.get().getCognome() != null && !customer.get().getCognome().isBlank()) {
+            customerName += " " + customer.get().getCognome();
+        }
         return new ChatDtos.VehicleLookupResponse(
-                true, customer.get().getId(), customer.get().getNome(), company,
+                true, customer.get().getId(), customerName, company,
                 ChatDtos.VehicleLookupResponse.VERIFIED);
     }
 

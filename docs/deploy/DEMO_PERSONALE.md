@@ -107,3 +107,10 @@ a Production e non usare un daemon (i daemon Vercel sono orientati a Production)
 
 Nota: l'outbox notifiche accettazione/conclusione del vecchio bot Python
 richiede un dispatcher dedicato; non è garantita in Preview con questo webhook.
+
+
+## Anagrafiche professionali per la Preview
+
+Il file `database/14_preview_realistic_data.sql` aggiorna **solo** `fornitori_demo`, senza toccare le fixture storiche del docente o gli altri database. Rende coerenti i nomi di clienti, autisti e operatori, usa indirizzi plausibili e rinomina i collaudi visibili. Le email `@recuveicol.example` sono volutamente non recapitabili. Anche le targhe e i recapiti sono sintetici: **non devono essere utilizzati per soccorsi reali**.
+
+Backup prima dell'operazione: ramo Neon `backup-before-realistic-demo-2026-11-06`. Il login guidato resta `centrale` / `autista`; `DemoController` accetta temporaneamente le email precedenti durante la migrazione. La modifica è idempotente e non si applica agli altri database CI.

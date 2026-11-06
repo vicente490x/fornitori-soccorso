@@ -9,6 +9,8 @@ Apri l'[indice della documentazione](./docs/00_INDICE_GENERALE.md).
 
 ## Demo personale
 
+I dati della Preview sono realistici nella presentazione ma **interamente simulati**. Le anagrafiche professionali e il ripristino dei nomi sono gestiti da [migrazione 14](database/14_preview_realistic_data.sql); il relativo database Neon ha un ramo di backup dedicato.
+
 Questa copia è gestita autonomamente da `vicente490x`. Non sincronizza automaticamente
 le modifiche con la repository originale di `coluccimarco`.
 
