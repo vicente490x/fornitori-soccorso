@@ -6,8 +6,9 @@ Dialogo guidato in Python, senza dipendenze esterne (solo libreria standard, Pyt
 o superiore), allineato ai dialoghi del docente. Non accede al database: parla
 con il backend solo tramite gli endpoint `/api/v1/chat/*` di `api/openapi.yaml`.
 
-**Stato:** dialogo e client aggiornati al contratto condiviso v1 e integrati con il backend su
-`main`. WhatsApp e webhook sono fuori ambito.
+**Stato:** il bot Python conserva il polling per sviluppo locale. Il webhook Preview
+è implementato invece in Java nel backend, con sessioni e risposte su PostgreSQL.
+WhatsApp resta fuori ambito.
 
 ## Provarlo
 
@@ -60,10 +61,10 @@ Il bot resta attivo finché il comando è in esecuzione. Usa il long polling, qu
 serve ngrok né un indirizzo pubblico; risponde solo nelle chat private. Il token non va
 mai scritto in file del repo o in chat.
 
-Per i clienti reali il processo deve girare su un server sempre acceso: Vercel ospita solo il
-frontend e non può far girare il bot in polling. Il sito apre `t.me/Fornitori_Soccorso_Bot`:
-il codice non contiene lo username e riconosce il bot solo dal token, quindi il token deve essere
-di quel bot.
+In Preview Vercel si usa il nuovo endpoint Java `/api/v1/telegram/webhook`, non
+il processo Python. È necessario applicare la migrazione `database/13_telegram_webhook.sql`
+al database demo. Il sito apre `t.me/Fornitori_Soccorso_Bot`: il token deve
+appartenere a quel bot. Non eseguire polling Python contemporaneamente al webhook.
 
 ## Test
 
@@ -133,7 +134,7 @@ ogni stato; un messaggio che non è una targa riceve il testo di aiuto.
 
 ## Aggiungere un canale
 
-WhatsApp e webhook sono fuori ambito. Per aggiungere un canale basta trasformare ogni messaggio in un
+WhatsApp e ulteriori webhook restano fuori ambito del client Python. Per aggiungere un canale basta trasformare ogni messaggio in un
 `InboundMessage` (modello: `telegram_channel.py`):
 
 ```python
