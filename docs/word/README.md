@@ -1,15 +1,33 @@
-# Documenti Word — nota di allineamento (06/11/2026)
+# Documentazione Word · manifest versione 3.0
 
-I file `.docx` presenti in questa cartella sono snapshot generati prima della modifica della fascia notturna. **Non assumere che riportino la configurazione corrente.**
+**Aggiornamento:** 06/11/2026 · **Sorgente:** branch `main` di [vicente490x/fornitori-soccorso](https://github.com/vicente490x/fornitori-soccorso).
 
-## Configurazione tariffaria corrente
+I nove file DOCX riportati qui sono stati **rigenerati dai rispettivi Markdown canonici** con impaginazione e titoli coerenti. Sono stati verificati i pacchetti ZIP/OOXML, ma non ancora la resa pagina per pagina in Microsoft Word.
 
-- Fascia notturna: **20:00 incluse – 08:00 escluse**, in `Europe/Rome`.
-- Supplemento: **25%**.
-- Istante di riferimento in app: **ora di accettazione**; conferma didattica del timestamp ancora aperta.
-- Migration per DB esistenti: `database/12_night_rate_20.sql`.
-- Nessun ricalcolo degli importi delle missioni già chiuse.
+| Documento Word | Sorgente canonica |
+|---|---|
+| [00_INDICE_DOCUMENTAZIONE.docx](./00_INDICE_DOCUMENTAZIONE.docx) | [Indice](../00_INDICE_GENERALE.md) |
+| [BUR_FORNITORI.docx](./BUR_FORNITORI.docx) | [BUR](../requirements/BUR_FORNITORI.md) |
+| [FUD_FORNITORI.docx](./FUD_FORNITORI.docx) | [FUD](../requirements/FUD_FORNITORI.md) |
+| [TAD_FORNITORI.docx](./TAD_FORNITORI.docx) | [TAD](../architecture/TAD_FORNITORI.md) |
+| [MANUALE_TECNICO.docx](./MANUALE_TECNICO.docx) | [Manuale tecnico](../manuals/MANUALE_TECNICO.md) |
+| [MANUALE_UTENTE.docx](./MANUALE_UTENTE.docx) | [Manuale utente](../manuals/MANUALE_UTENTE.md) |
+| [GUIDA_TEAM.docx](./GUIDA_TEAM.docx) | [Guida team](../team/README.md) |
+| [PROJECT_MANAGEMENT_PLAN.docx](./PROJECT_MANAGEMENT_PLAN.docx) | [Piano di progetto](../management/PROJECT_MANAGEMENT_PLAN.md) |
+| [AUDIT_SICUREZZA.docx](./AUDIT_SICUREZZA.docx) | [Audit backend](../security/BACKEND_SECURITY_AUDIT.md) |
 
-Per documenti aggiornati consultare [indice](../00_INDICE_GENERALE.md), [FUD](../requirements/FUD_FORNITORI.md), [TAD](../architecture/TAD_FORNITORI.md), [regole](../requirements/BUSINESS_RULES.md), [manuale tecnico](../manuals/MANUALE_TECNICO.md) e [manuale utente](../manuals/MANUALE_UTENTE.md).
+## Regola tariffaria applicabile
 
-I Word/PDF vanno rigenerati dai Markdown prima di consegnarli come documentazione definitiva.
+- **Fascia:** 20:00 incluse–08:00 escluse, fuso `Europe/Rome`, timestamp di accettazione (conferma docente ancora aperta).
+- **Supplemento:** 25%; uscita €50 + €1,20/km, arrotondamento `HALF_UP` a due cifre.
+- **Database:** `database/12_night_rate_20.sql`; Neon demo già configurato a 20:00–08:00.
+- **Storico:** prezzi delle missioni chiuse non ricalcolati.
+
+## Controlli prima di consegna/uso reale
+
+1. Aprire in Microsoft Word alcuni documenti lunghi con tabelle (FUD, TAD) e verificarne paginazione/leggibilità; aggiornare eventuali indici generati.
+2. Ripetere `./mvnw clean verify` e i test Python sul commit corrente con PostgreSQL 18 isolato.
+3. Verificare sul browser la demo (401, 403, 503, riprova), e le integrazioni Telegram/mappe.
+4. Risolvere o accettare formalmente le criticità in `docs/security/VULNERABILITY_REGISTER.md` e acquisire i requisiti/docente.
+
+I PDF di presentazione e `docs/quality/registri.xlsx` sono snapshot precedenti: la loro revisione non è certificata da questa rigenerazione Word.

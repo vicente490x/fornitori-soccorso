@@ -14,7 +14,7 @@ Scale qualitative: Alto / Medio / Basso.
 | R-07 | Lo stato della conversazione in RAM si perde al riavvio | Alta | Basso | Le missioni restano nel backend; il cliente ricomincia il dialogo | Marco Colucci | Accettato per la demo |
 | R-08 | Il dataset storico include assegnazioni incoerenti con le regole live | Media | Medio | `is_fixture` isola lo storico | Vincenzo Minervini | Mitigato |
 | R-09 | Requisiti approvati e verbali Scrum non dimostrati | Media | Medio | Raccogliere verbali e sign-off reali | Team | Aperto |
-| R-10 | DOCX non ispezionati visivamente in Microsoft Word | Media | Medio | Controllo manuale e aggiornamento dell'indice prima della consegna | Team | Aperto |
+| R-10 | DOCX rigenerati ma non ispezionati visivamente in Microsoft Word | Media | Medio | File DOCX rigenerati e verificati come archivio Office Open XML; apertura, tabelle e paginazione da verificare prima della consegna definitiva | Team | Aperto, impaginazione da collaudare |
 | R-11 | Messaggio duplicato se il bot si ferma tra invio ed esito | Bassa | Basso | Riserva persistente; consegna "almeno una volta" | Marika Sancilio, Francesco Valeriano, Giuseppe Cangellosi | Accettato per la demo |
 | R-12 | Il ruolo `fornitori_app` è proprietario delle tabelle e può modificarne la struttura | Bassa | Medio | Separare proprietario e ruolo applicativo, dopo un backup (V-13) | Vincenzo Minervini | Aperto |
 | R-13 | HTTPS e reverse proxy non sono stati provati | Media | Alto | Controllo della configurazione all'avvio in `prod`; prova su un server reale prima dell'uso (V-15) | Vincenzo Minervini | Aperto |

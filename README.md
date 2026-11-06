@@ -174,3 +174,9 @@ non è pronto per dati reali. Vedi [sicurezza](./docs/architecture/SECURITY_DESI
 Altri riferimenti: [manuale tecnico](./docs/manuals/MANUALE_TECNICO.md),
 [manuale utente](./docs/manuals/MANUALE_UTENTE.md), [database](./docs/architecture/DATABASE_DESIGN.md),
 [sicurezza del backend](./docs/security/BACKEND_SECURITY_AUDIT.md), [Word editabili](./docs/word/).
+
+## Pacchetto documentale (06/11/2026)
+
+I **nove documenti Word** principali sono stati rigenerati da Markdown e sono in [docs/word/](docs/word/). L'[indice](docs/00_INDICE_GENERALE.md) è la mappa delle fonti; la [verifica documentale](docs/quality/VERIFICA_DOCUMENTALE_2026-11-06.md) distingue ciò che è provato dai gate ancora aperti. La fascia notturna corrente è 20:00 (inclusa)–08:00 (esclusa), supplemento 25% su ora di accettazione in `Europe/Rome`. I costi storici restano invariati.
+
+**I PDF di presentazione e il vecchio workbook restano storici:** non assumere che riflettano l'ultima regola senza un controllo specifico. Il merge e la build Vercel non sostituiscono un'esecuzione CI completa né una verifica manuale in browser.
