@@ -1,8 +1,8 @@
 # FORNITORI — indice generale e registro documentale
 
-**Codice:** FOR-IDX-001 · **Versione:** 2.1 · **Data:** 05/11/2026 · **Responsabili:** team
+**Codice:** FOR-IDX-001 · **Versione:** 2.2 · **Data:** 06/11/2026 · **Responsabili:** team
 **Stato:** baseline documentale, non approvata dal docente
-**Repository:** [coluccimarco/fornitori-soccorso](https://github.com/coluccimarco/fornitori-soccorso)
+**Repository:** [vicente490x/fornitori-soccorso](https://github.com/vicente490x/fornitori-soccorso)
 
 ## Per iniziare
 
@@ -12,7 +12,7 @@
 - [Sprint](./agile/README.md) · [backlog](./agile/PRODUCT_BACKLOG.md)
 - [Matrice di tracciabilità](./requirements/REQUIREMENTS_TRACEABILITY.md)
 - [Manuale utente](./manuals/MANUALE_UTENTE.md) · [Manuale tecnico](./manuals/MANUALE_TECNICO.md)
-- [Guide del team](./team/) · [Word modificabili](./word/)
+- [Guide del team](./team/) · [Word modificabili](./word/) ([nota di allineamento](./word/README.md))
 - [Checklist per l'ambiente reale](./deploy/CHECKLIST_AMBIENTE_REALE.md)
 - [Presentazione](./presentazione/canva/LEGGIMI.md) · [Diagrammi](./diagrams/README.md)
 - Note sulle modifiche, come record storico: [backend](./changes/BACKEND.md) · [frontend](./changes/FRONTEND.md) · [chatbot](./changes/CHATBOT.md)
@@ -48,3 +48,10 @@
 
 L'indice dei Word è un campo aggiornabile: in Microsoft Word, clic destro sull'indice,
 **Aggiorna campo → Aggiorna intero indice**.
+
+## Aggiornamento tariffa notturna — 06/11/2026
+
+- **Regola in vigore:** 20:00 incluse – 08:00 escluse, ora locale `Europe/Rome` all'accettazione, supplemento 25%.
+- Seed `database/02_seed.sql` e migrazione per database già attivi `database/12_night_rate_20.sql` (non modifica gli importi chiusi).
+- Canonici aggiornati: [regole di business](./requirements/BUSINESS_RULES.md), [FUD](./requirements/FUD_FORNITORI.md), [TAD](./architecture/TAD_FORNITORI.md), [manuale tecnico](./manuals/MANUALE_TECNICO.md), [manuale utente](./manuals/MANUALE_UTENTE.md), [registro decisioni](./management/DECISION_LOG.md).
+- **Attenzione:** i DOCX e i PDF di presentazione già generati non sono stati rigenerati: potrebbero riportare l'orario precedente 22:00. Per l'orario aggiornato usare i Markdown indicati e la [nota per i Word](./word/README.md).
