@@ -26,7 +26,7 @@ Verifica applicata al database **Neon della demo**: lettura successiva all'updat
 
 - I file Java e SQL indicano che `PricingService` legge `night_start/night_end` da `pricing_config`.
 - Il test parametrico `MissionLifecycleTests.nightSurchargeFollowsTheAcceptanceTime` contiene i casi 19:59, 20:00, 21:59, 22:00, 07:59, 08:00, con importi attesi 62,00 € / 77,50 € per 10 km.
-- I nove Word principali sono stati rigenerati dai Markdown attuali, con verifica della struttura ZIP/OOXML (non equivalenza visiva in Word).
+- I nove Word principali sono stati rigenerati dai Markdown attuali; quattro Word integrativi (QA, tracciabilità, regole di business, rischi) completano il pacchetto. È stata verificata la struttura ZIP/OOXML dei nove principali; rimane da collaudare la resa visiva in Word.
 - Il precedente rilascio documentale risultava `READY` su Vercel; lo stato di ogni commit successivo deve essere verificato separatamente.
 - Le interrogazioni al connettore GitHub non hanno restituito run GitHub Actions per i commit di documentazione consultati. **Non significa che i test falliscano, ma non possiamo considerarli superati.**
 

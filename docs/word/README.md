@@ -2,7 +2,7 @@
 
 **Aggiornamento:** 06/11/2026 · **Sorgente:** branch `main` di [vicente490x/fornitori-soccorso](https://github.com/vicente490x/fornitori-soccorso).
 
-I nove file DOCX riportati qui sono stati **rigenerati dai rispettivi Markdown canonici** con impaginazione e titoli coerenti. Sono stati verificati i pacchetti ZIP/OOXML, ma non ancora la resa pagina per pagina in Microsoft Word.
+I nove Word principali e cinque Word integrativi riportati qui sono stati **rigenerati dai rispettivi Markdown canonici** con impaginazione e titoli coerenti. Sono stati verificati i pacchetti ZIP/OOXML, ma non ancora la resa pagina per pagina in Microsoft Word.
 
 | Documento Word | Sorgente canonica |
 |---|---|
@@ -15,6 +15,17 @@ I nove file DOCX riportati qui sono stati **rigenerati dai rispettivi Markdown c
 | [GUIDA_TEAM.docx](./GUIDA_TEAM.docx) | [Guida team](../team/README.md) |
 | [PROJECT_MANAGEMENT_PLAN.docx](./PROJECT_MANAGEMENT_PLAN.docx) | [Piano di progetto](../management/PROJECT_MANAGEMENT_PLAN.md) |
 | [AUDIT_SICUREZZA.docx](./AUDIT_SICUREZZA.docx) | [Audit backend](../security/BACKEND_SECURITY_AUDIT.md) |
+
+## Word integrativi
+
+| Documento Word | Sorgente canonica |
+|---|---|
+| [VERIFICA_DOCUMENTALE.docx](./VERIFICA_DOCUMENTALE.docx) | [QA e prove documentali](../quality/VERIFICA_DOCUMENTALE_2026-11-06.md) |
+| [TRACCIABILITA_REQUISITI.docx](./TRACCIABILITA_REQUISITI.docx) | [Matrice requisiti](../requirements/REQUIREMENTS_TRACEABILITY.md) |
+| [REGOLE_BUSINESS.docx](./REGOLE_BUSINESS.docx) | [Regole business](../requirements/BUSINESS_RULES.md) |
+| [REGISTRO_RISCHI.docx](./REGISTRO_RISCHI.docx) | [Rischi](../management/RISK_REGISTER.md) |
+
+L'indice generale `00_INDICE_DOCUMENTAZIONE.docx` è stato rigenerato per includere la nuova sezione «Consegna e verifica».
 
 ## Regola tariffaria applicabile
 

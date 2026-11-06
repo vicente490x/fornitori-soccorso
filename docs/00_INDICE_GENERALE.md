@@ -54,12 +54,12 @@ L'indice dei Word è un campo aggiornabile: in Microsoft Word, clic destro sull'
 - **Regola in vigore:** 20:00 incluse – 08:00 escluse, ora locale `Europe/Rome` all'accettazione, supplemento 25%.
 - Seed `database/02_seed.sql` e migrazione per database già attivi `database/12_night_rate_20.sql` (non modifica gli importi chiusi).
 - Canonici aggiornati: [regole di business](./requirements/BUSINESS_RULES.md), [FUD](./requirements/FUD_FORNITORI.md), [TAD](./architecture/TAD_FORNITORI.md), [manuale tecnico](./manuals/MANUALE_TECNICO.md), [manuale utente](./manuals/MANUALE_UTENTE.md), [registro decisioni](./management/DECISION_LOG.md).
-- **Word principali:** 9 DOCX rigenerati il 06/11/2026 a partire dai Markdown canonici; struttura dei file verificata, ma apertura/impaginazione in Microsoft Word da collaudare.
+- **Word:** 9 DOCX principali e 4 DOCX integrativi rigenerati il 06/11/2026 a partire dai Markdown canonici; struttura dei principali verificata, apertura/impaginazione in Microsoft Word ancora da collaudare.
 - **PDF di presentazione e vecchio Excel:** sono materiali storici non rigenerati in repository. Non considerarli automaticamente allineati; usare i Markdown aggiornati, i nuovi Word e la [verifica documentale](./quality/VERIFICA_DOCUMENTALE_2026-11-06.md).
 
 ## Consegna e verifica
 
-- [Manifest dei documenti Word](./word/README.md), 9 DOCX rigenerati.
+- [Manifest dei documenti Word](./word/README.md), 13 DOCX disponibili.
 - [Verifica documentale e release](./quality/VERIFICA_DOCUMENTALE_2026-11-06.md), con evidenze controllate e gate ancora aperti.
 - [Casi di test della fascia 20:00–08:00](../src/test/java/it/exprivia/fornitori/MissionLifecycleTests.java); **non** sono dichiarati eseguiti su GitHub Actions dopo l'ultima modifica.
 - [Registro rischi](./management/RISK_REGISTER.md) e [vulnerabilità aperte](./security/VULNERABILITY_REGISTER.md) per distinguere la demo dall'uso reale.
