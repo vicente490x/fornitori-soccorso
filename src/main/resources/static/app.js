@@ -912,6 +912,18 @@
     alert.textContent = message;
   }
 
+  // Solo letture: evitare retry automatici di POST/PATCH/DELETE.
+  function showRecoverableError(selector, error, retryRead) {
+    const rescue = window.FornitoriRescue;
+    if (rescue?.isTransient(error)) {
+      const alert = $(selector);
+      alert.className = "alert alert-danger";
+      rescue.render(alert, error.message, retryRead);
+    } else {
+      showInlineAlert(selector, error.message);
+    }
+  }
+
   function loadingMarkup(text) {
     return `<div class="empty-state" role="status"><span class="spinner-border spinner-border-sm text-secondary" aria-hidden="true"></span><p class="small text-secondary mb-0 mt-2">${safe(text)}</p></div>`;
   }
@@ -946,7 +958,7 @@
       $("#missionCount").textContent = `${state.missions.length} ${state.missions.length === 1 ? "missione" : "missioni"}`;
       renderMissionList();
     } catch (error) {
-      showInlineAlert("#missionAlert", error.message);
+      showRecoverableError("#missionAlert", error, () => loadMissions(true));
       $("#missionList").innerHTML = "";
       $("#missionCount").textContent = "Dati non disponibili";
     }
@@ -1119,7 +1131,7 @@
         return;
       }
       state.dashboardFailed = true;
-      showInlineAlert("#dashboardAlert", error.message);
+      showRecoverableError("#dashboardAlert", error, () => loadDashboard());
     }
   }
 
@@ -1273,7 +1285,7 @@
       const dashboard = await request(`/api/v1/dashboard?mode=${encodeURIComponent($("#costMode").value)}`);
       renderCosts(dashboard);
     } catch (error) {
-      showInlineAlert("#costAlert", error.message);
+      showRecoverableError("#costAlert", error, () => loadCosts());
     }
   }
 
@@ -1344,7 +1356,7 @@
       updateCountdowns();
       missions.forEach((mission) => void loadDriverRoute(mission));
     } catch (error) {
-      showInlineAlert("#driverAlert", error.message);
+      showRecoverableError("#driverAlert", error, () => loadDriverMissions(true));
       $("#driverMissions").innerHTML = "";
     }
   }
@@ -1446,7 +1458,7 @@
         ? result.missioni.map(driverHistoryCard).join("")
         : '<div class="empty-state"><h2 class="h6">Nessuna missione nello storico</h2><p class="small text-secondary mb-0">Lo storico sarà aggiornato al termine delle missioni.</p></div>';
     } catch (error) {
-      showInlineAlert("#historyAlert", error.message);
+      showRecoverableError("#historyAlert", error, () => loadDriverHistory());
       $("#driverHistory").innerHTML = "";
     }
   }

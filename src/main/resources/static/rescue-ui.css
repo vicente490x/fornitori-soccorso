@@ -1,0 +1,12 @@
+/* Accessible, lightweight error recovery. */
+.rescue-panel{display:flex;align-items:center;gap:17px;padding:5px 0;color:#283341}
+.rescue-panel__mascot{width:78px;height:78px;flex:0 0 78px;object-fit:contain}
+.rescue-panel__content{min-width:0;flex:1}
+.rescue-panel__title{display:block;font-size:15px;line-height:1.35;font-weight:750;margin-bottom:5px}
+.rescue-panel__message{margin:0 0 10px;color:#4a5869;font-size:13px;line-height:1.5;font-weight:400}
+.rescue-panel__retry{display:inline-flex;align-items:center;min-height:36px;padding:7px 13px;border:1px solid #9bafbb;border-radius:9px;background:#fff;color:#183748;font:600 13px/1.3 system-ui,sans-serif;cursor:pointer}
+.rescue-panel__retry:hover{background:#edf4f7;border-color:#526e7e}
+.rescue-panel__retry:focus-visible{outline:3px solid #17738b;outline-offset:3px}
+.rescue-panel__retry:disabled{opacity:.55;cursor:wait}
+#demoStatus .rescue-panel{margin:17px 0;padding:16px;border:1px solid #d9dfd8;border-radius:16px;background:#fff}
+@media(max-width:480px){.rescue-panel{align-items:flex-start;gap:12px}.rescue-panel__mascot{width:58px;height:58px;flex-basis:58px}}
