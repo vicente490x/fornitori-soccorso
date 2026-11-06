@@ -126,15 +126,28 @@ impostare uguale su backend e chatbot; se manca, rispondono `401`. Vedi [chatbot
 
 ## Chatbot in produzione
 
-Il bot risponde solo se il processo Python è avviato su un server sempre acceso, con `TELEGRAM_BOT_TOKEN`
-impostato e con il backend raggiungibile. Dalla cartella `chatbot/`:
+Per la **Preview `main` Vercel**, il bot usa il webhook HTTPS integrato nel backend Java
+(`/api/v1/telegram/webhook`). Il processo Python con long polling rimane soltanto
+per sviluppo locale e NON va eseguito insieme al webhook.
 
-```bash
-python3 -m fornitori_chatbot --telegram --http
-```
+- URL pubblico e webhook: `https://fornitori-soccorso-demo.vercel.app/api/v1/telegram/webhook`.
+- `TELEGRAM_BOT_TOKEN`: variabile Secret nell'ambiente **Preview** Vercel; non esporla nel codice.
+- `FORNITORI_CHAT_TOKEN`: serve alle vecchie API chatbot e va mantenuto segreto.
+- Schema necessario sul solo database demo: `database/13_telegram_webhook.sql`.
+- Il dominio Vercel deve essere collegato alla Preview del branch `main`; verificare
+  il deployment effettivo prima di registrare il webhook.
+- L'app registra il webhook presso Telegram all'avvio **solo se**
+  `VERCEL_ENV=preview` e `VERCEL_GIT_COMMIT_REF=main`, con
+  `X-Telegram-Bot-Api-Secret-Token` derivato dal token e verificato in modo sicuro.
+- Le sessioni di chat e le risposte non inviate sono persistenti in Neon: sopravvivono
+  ai riavvii e ai cold start di Vercel. Un aggiornamento fallito viene ritentato da Telegram.
+- Le notifiche automatiche di accettazione/conclusione (outbox Python con polling)
+  **non sono ancora collegate a un trigger Preview affidabile**: per ora il cliente
+  può inviare **STATO** per ricevere l'aggiornamento. Non dichiarare collaudato l'intero bot
+  finché non si è verificato il percorso Telegram -> missione -> backend -> database.
 
-`--http` collega il bot al backend reale tramite `FORNITORI_API_URL` e `FORNITORI_CHAT_TOKEN`; senza questa
-opzione il bot usa dati di prova. Vercel ospita solo il frontend e non può far girare il bot in polling.
+Il webhook è disponibile senza processo attivo 24/7, nei limiti di uptime, quote,
+cold start e timeout del progetto Preview.
 
 ## Struttura
 
