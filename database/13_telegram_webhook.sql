@@ -28,8 +28,14 @@ CREATE TABLE IF NOT EXISTS telegram_outbound (
  UNIQUE(chat_id, update_id, sequence_number)
 );
 CREATE INDEX IF NOT EXISTS ix_telegram_outbound_unsent ON telegram_outbound(chat_id, id) WHERE sent_at IS NULL;
--- Il ruolo del deploy riceve solo le autorizzazioni necessarie. Sostituire il nome
--- se il runtime Neon usa un ruolo diverso.
-GRANT SELECT, INSERT, UPDATE, DELETE ON telegram_conversations, telegram_outbound TO fornitori_app;
-GRANT USAGE, SELECT ON SEQUENCE telegram_outbound_id_seq TO fornitori_app;
+-- Aggiunge i privilegi solo al ruolo runtime esistente nel database di destinazione.
+DO $ DECLARE runtime_role text;
+BEGIN
+ FOR runtime_role IN SELECT rolname FROM pg_roles
+   WHERE rolname IN ('fornitori_demo_app', 'fornitori_app')
+ LOOP
+  EXECUTE format('GRANT SELECT, INSERT, UPDATE, DELETE ON telegram_conversations, telegram_outbound TO %I', runtime_role);
+  EXECUTE format('GRANT USAGE, SELECT ON SEQUENCE telegram_outbound_id_seq TO %I', runtime_role);
+ END LOOP;
+END $;
 COMMIT;
