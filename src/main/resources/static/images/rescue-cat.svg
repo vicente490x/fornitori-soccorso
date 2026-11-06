@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none" role="img">
+  <title>Gatto di assistenza</title>
+  <rect width="128" height="128" rx="28" fill="#E8F2F4"/>
+  <path d="M28 48 33 20 53 36c7-2 15-2 22 0l20-16 5 28c8 10 12 20 12 33 0 25-20 39-48 39S16 106 16 81c0-13 4-23 12-33Z" fill="#FCFCFF" stroke="#57707E" stroke-width="4" stroke-linejoin="round"/>
+  <path d="m37 33-2 14 13-7M91 33l2 14-13-7" fill="#DCE8EB"/>
+  <path d="M41 70c3-5 9-5 12 0M75 70c3-5 9-5 12 0" stroke="#57707E" stroke-width="4" stroke-linecap="round"/>
+  <path d="m61 80 3 3 3-3-3-2-3 2Z" fill="#EA9D9C"/>
+  <path d="M64 84v4m0 0c-5 6-11 5-14 0m14 0c5 6 11 5 14 0" stroke="#57707E" stroke-width="3" stroke-linecap="round"/>
+  <path d="m37 84-18-5m18 10-18 2m72-7 18-5m-18 10 18 2" stroke="#9AB4C0" stroke-width="3" stroke-linecap="round"/>
+  <path d="M34 103c8 7 18 8 30 8" stroke="#57707E" stroke-width="3" stroke-linecap="round"/>
+</svg>

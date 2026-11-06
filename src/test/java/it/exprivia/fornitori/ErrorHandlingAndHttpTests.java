@@ -85,6 +85,14 @@ class ErrorHandlingAndHttpTests {
     }
 
     @Test
+    void rescueAssetsArePubliclyServed() throws Exception {
+        for (String path : List.of("/rescue-ui.js", "/rescue-ui.css", "/images/rescue-cat.svg")) {
+            var response = send(url(path));
+            assertThat(response.statusCode()).as(path).isEqualTo(200);
+        }
+    }
+
+    @Test
     void oversizedBodyIsRefusedBeforeReachingTheController() throws Exception {
         var response = send(url("/api/v1/auth/login").header("Content-Type", "application/json")
                 .POST(HttpRequest.BodyPublishers.ofString("{\"email\":\"" + "x".repeat(70_000) + "\"}")));
