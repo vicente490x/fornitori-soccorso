@@ -121,6 +121,7 @@ public class SecurityConfig {
                         .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                         .sessionFixation(fixation -> fixation.changeSessionId()))
                 .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers("/demo.html", "/demo.js", "/demo.css", "/demo-banner.js", "/api/v1/demo/**").permitAll()
                         .requestMatchers("/", "/index.html", "/app.js", "/styles.css", "/public-site.css", "/favicon.ico", "/images/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/v1/maps/route")
                         .hasAnyRole(UserRole.AUTISTA.name(), UserRole.RESPONSABILE.name())

@@ -7,6 +7,19 @@ nel repository.
 
 Apri l'[indice della documentazione](./docs/00_INDICE_GENERALE.md).
 
+## Demo personale
+
+Questa copia è gestita autonomamente da `vicente490x`. Non sincronizza automaticamente
+le modifiche con la repository originale di `coluccimarco`.
+
+- [Demo condivisa](https://fornitori-soccorso-demo.vercel.app/).
+- [Accesso dimostrativo centrale/autista](https://fornitori-soccorso-demo.vercel.app/demo.html).
+- [Configurazione e collegamento Vercel](docs/deploy/DEMO_PERSONALE.md).
+
+La demo usa un database Neon dedicato e dati sintetici condivisi tra i visitatori.
+L'ambiente richiesto è Preview. Il dominio stabile, da solo, non identifica il tipo
+di deployment e non autorizza una pubblicazione in Production.
+
 ## Stato
 
 | Area | Stato |

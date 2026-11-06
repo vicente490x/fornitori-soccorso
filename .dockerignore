@@ -1,0 +1,10 @@
+.git
+.codex
+.vercel
+.env*
+target
+docs
+chatbot
+database
+deploy
+*.log
