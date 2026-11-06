@@ -13,7 +13,7 @@ BEGIN
 
   UPDATE app_users a SET
     nome = CASE WHEN a.nome ~* 'demo|prova|test' THEN v.nome ELSE a.nome END,
-    email = CASE WHEN a.email ~* '@demo\\.(it|example)$' THEN v.email ELSE a.email END
+    email = CASE WHEN a.email ~* '@demo[.](it|example)$' THEN v.email ELSE a.email END
   FROM (VALUES
     (1, 'Maria Rossi', 'centrale@recuveicol.example'),
     (2, 'Paolo Ferri', 'paolo.ferri@recuveicol.example'),
@@ -28,7 +28,7 @@ BEGIN
     (11, 'Elena Rinaldi', 'elena.rinaldi@recuveicol.example'),
     (12, 'Marco De Santis', 'marco.desantis@recuveicol.example')
   ) AS v(id,nome,email)
-  WHERE a.id=v.id AND (a.nome ~* 'demo|prova|test' OR a.email ~* '@demo\\.(it|example)$');
+  WHERE a.id=v.id AND (a.nome ~* 'demo|prova|test' OR a.email ~* '@demo[.](it|example)$');
 
   UPDATE drivers d SET nome=v.nome
   FROM (VALUES
