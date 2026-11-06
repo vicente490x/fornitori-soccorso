@@ -144,8 +144,16 @@ class MissionLifecycleTests extends IsolatedPostgresTest {
         assertThat(jdbc.queryForObject("select count(*) from notifications_outbox where mission_id = ?", Integer.class, mission)).isEqualTo(2);
     }
 
+    @Test
+    void configuredNightWindowStartsAtTwentyAndEndsAtEight() {
+        assertThat(jdbc.queryForObject("select night_start::text from pricing_config where id = 1", String.class))
+                .isEqualTo("20:00:00");
+        assertThat(jdbc.queryForObject("select night_end::text from pricing_config where id = 1", String.class))
+                .isEqualTo("08:00:00");
+    }
+
     @ParameterizedTest
-    @CsvSource({"22:00,true,77.50", "07:59,true,77.50", "08:00,false,62.00", "21:59,false,62.00", "20:00,false,62.00"})
+    @CsvSource({"19:59,false,62.00", "20:00,true,77.50", "21:59,true,77.50", "22:00,true,77.50", "07:59,true,77.50", "08:00,false,62.00"})
     void nightSurchargeFollowsTheAcceptanceTime(String time, boolean night, double cost) throws Exception {
         Actor manager = login(RESPONSABILE);
         long mission = createMission(manager);

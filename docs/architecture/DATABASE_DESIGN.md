@@ -70,7 +70,10 @@ psql -v ON_ERROR_STOP=1 -U fornitori_app -d fornitori -f database/08_cleanup_and
 psql -v ON_ERROR_STOP=1 -U fornitori_app -d fornitori -f database/09_integrity_and_indexes.sql
 psql -v ON_ERROR_STOP=1 -U fornitori_app -d fornitori -f database/10_night_rate_22.sql
 psql -v ON_ERROR_STOP=1 -U fornitori_app -d fornitori -f database/11_operativita_missioni.sql
+psql -v ON_ERROR_STOP=1 -U fornitori_app -d fornitori -f database/12_night_rate_20.sql
 ```
+
+**Fascia tariffaria corrente:** `night_start = 20:00`, `night_end = 08:00` in `pricing_config` (si applica all'ora locale `Europe/Rome` di accettazione). Lo script 10 è conservato come migrazione storica; lo script 12 ripristina l'inizio alle 20:00 senza ricalcolare missioni chiuse.
 
 Hibernate usa `validate`: senza lo script 11 l'applicazione non parte. Il 09 è additivo: vincoli di coerenza e indici. L'11 aggiunge
 gli stati `verifica_polizza`, `gestione_manuale` e `annullata`, e le colonne descritte sopra. Su un database esistente

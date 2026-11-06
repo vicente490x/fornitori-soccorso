@@ -9,7 +9,7 @@
 | B-03 | P1 | Login e anagrafiche web | Francesco Valeriano, Giuseppe Cangellosi, Marika Sancilio | B-01 | Implementato |
 | B-04 | P0 | API missione e dettaglio centrale | Vincenzo Minervini | B-01 | Implementato |
 | B-05 | P0 | Proposta, accettazione, rifiuto, timeout e concorrenza | Vincenzo Minervini | B-04 | Implementato |
-| B-06 | P0 | Chiusura, tariffa e dashboard | Vincenzo Minervini | B-05 | Implementato; regola da confermare col docente |
+| B-06 | P0 | Chiusura, tariffa e dashboard | Vincenzo Minervini | B-05 | Implementato; fascia 20:00–08:00, timestamp da confermare col docente |
 | B-07 | P1 | Chatbot guidato e creazione richiesta via API | Marco Colucci | API chat | Implementato; sola targa limite noto |
 | B-08 | P1 | Geocodifica, percorso, km stimati ed effettivi distinti | Marco Colucci | B-04 | Implementato |
 | B-09 | P1 | Outbox e notifiche Telegram con riserva persistente | Marika Sancilio, Francesco Valeriano, Giuseppe Cangellosi | B-05, B-06 | Implementato |

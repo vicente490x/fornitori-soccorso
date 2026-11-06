@@ -75,11 +75,10 @@ dello storico, o dell'autista su una missione non ancora accettata, dà `409`. *
 ## UC-008 — Calcolare o rettificare il costo
 
 **Attore:** service per il calcolo; RESPONSABILE per la rettifica, dalla scheda missione.
-**Regola:** base 50 + 1,20/km, supplemento 25% dalle 22:00 alle 08:00, `HALF_UP`, `Europe/Rome`.
+**Regola:** base 50 + 1,20/km, supplemento 25% dalle **20:00 incluse** alle **08:00 escluse**, `HALF_UP`, `Europe/Rome`.
 La rettifica vale per le missioni eseguite e per quelle annullate con costo attribuito; richiede un
 motivo e conserva costo calcolato e audit.
-**API:** `/complete`, `PATCH /cost`. **Stato:** IMPLEMENTATO; timestamp di riferimento e inizio alle
-22:00, diverso dalle 20:00 del PDF, da confermare con il docente.
+**API:** `/complete`, `PATCH /cost`. **Stato:** IMPLEMENTATO; inizio fascia riallineato alle 20:00 dal 06/11/2026; resta da confermare col docente il timestamp di accettazione come riferimento.
 
 ## UC-009 — Consultare dashboard e guadagni
 

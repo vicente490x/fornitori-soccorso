@@ -104,7 +104,7 @@ ON CONFLICT (id) DO NOTHING;
 
 
 INSERT INTO pricing_config(id,uscita_eur,tariffa_km_eur,maggiorazione_notturna,night_start,night_end,timeout_proposta_min)
-VALUES (1,50.00,1.20,0.25,'22:00','08:00',10)
+VALUES (1,50.00,1.20,0.25,'20:00','08:00',10)
 ON CONFLICT (id) DO NOTHING;
 
 

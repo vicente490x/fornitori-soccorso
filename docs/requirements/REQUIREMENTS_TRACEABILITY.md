@@ -10,7 +10,7 @@ Gli ID `ST-###` sono chiavi introdotte in questa baseline, non ID di ticket orig
 | BR-003 | ST-003 — creare e consultare missione | MissionService | `/missioni`, tabella `missions` | V. Minervini | IMPLEMENTATO |
 | BR-004 | ST-004 — proporre e mantenere lo storico | MissionService, NearestDriverService | `/proposte`, `/proposta-automatica`, `mission_proposals` | V. Minervini | IMPLEMENTATO |
 | BR-005 | ST-005 — timeout e concorrenza | MissionExpiryScheduler, lock e indici | `/accept`, `/reject` | V. Minervini | IMPLEMENTATO |
-| BR-006 | ST-006 — chiusura e tariffa | PricingService, MissionService | `/complete` | V. Minervini | IMPLEMENTATO; regola da convalidare |
+| BR-006 | ST-006 — chiusura e tariffa | PricingService, MissionService | `/complete` | V. Minervini | IMPLEMENTATO; fascia 20:00–08:00, timestamp da convalidare |
 | BR-007 | ST-007 — rettifica motivata | MissionService, UI centrale | `/cost`, `mission_events` | V. Minervini; F. Valeriano, G. Cangellosi, M. Sancilio | IMPLEMENTATO |
 | BR-008 | ST-008 — dashboard e storico personale | MissionService, UI | `/dashboard`, `/autista/*` | V. Minervini; F. Valeriano, G. Cangellosi, M. Sancilio | IMPLEMENTATO |
 | BR-009 | ST-009 — richiesta da chatbot | Bot Python, ChatController | `/chat/lookup-targa`, `/chat/missioni`, `/chat/stato` | M. Colucci | IMPLEMENTATO; sola targa limite noto |

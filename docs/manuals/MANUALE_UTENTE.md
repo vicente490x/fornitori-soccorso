@@ -108,3 +108,7 @@ comunicare al team tecnico. Per errori di validazione o conflitto leggere il mes
 di ripetere un'azione. Non condividere password, token o dati personali tramite
 canali non autorizzati. Per emergenze stradali usare i canali ufficiali del gestore
 stradale o i servizi di emergenza.
+
+## Tariffa notturna (regola in vigore dal 06/11/2026)
+
+La fascia notturna copre le **20:00 incluse fino alle 08:00 escluse** del giorno successivo, in ora italiana (`Europe/Rome`). Il supplemento del 25% si applica al costo calcolato a partire dall'ora di accettazione della missione: alle 19:59 si applica la tariffa diurna, dalle 20:00 la notturna e dalle 08:00 di nuovo la diurna. I costi delle missioni già chiuse non vengono ricalcolati al cambio di configurazione.

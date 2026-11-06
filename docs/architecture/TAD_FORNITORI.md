@@ -84,8 +84,8 @@ clock iniettato gestisce gli istanti. `MissionExpiryScheduler` opera sulle righe
 missione passa a `gestione_manuale`. Le pratiche con polizza non verificabile nascono in `verifica_polizza`. Stati e
 transizioni sono in [`mission_states.mmd`](../diagrams/mission_states.mmd).
 
-Il seed prevede €50 di uscita, €1,20/km, supplemento 0,25 e fascia 22:00–08:00 sull'ora di accettazione, in `Europe/Rome`, con
-`HALF_UP`; il timestamp e l'inizio alle 22:00, diverso dalle 20:00 del PDF, vanno confermati col docente.
+Il seed prevede €50 di uscita, €1,20/km, supplemento 0,25 e fascia **20:00–08:00** sull'ora di accettazione, in `Europe/Rome`, con
+`HALF_UP`. Le 20:00 sono incluse e le 08:00 escluse. La migrazione `12_night_rate_20.sql` aggiorna i database esistenti e non ricalcola le missioni chiuse. Il timestamp di riferimento resta da confermare col docente.
 
 L'outbox scrive gli eventi nella transazione di dominio. Il dispatcher riserva le righe con `POST /chat/notifiche/claim`
 (`FOR UPDATE SKIP LOCKED`, riserva di 5 minuti) e registra l'esito, legato al numero di tentativo: un dispatcher in ritardo non può

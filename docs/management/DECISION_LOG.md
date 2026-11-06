@@ -9,7 +9,7 @@ indicato.
 | ID | Tema | Decisione/baseline documentata | Stato | Fonte |
 |---|---|---|---|---|
 | D-001 | Stack backend | Java 25, Spring Boot 4.1.2, Maven Wrapper, PostgreSQL 18/compatibile | Implementato; versione da valutare solo con change | `pom.xml`, README |
-| D-002 | Tariffa | Seed: €50 uscita, €1,20/km, supplemento 25%; calcolo Java in `Europe/Rome` | Implementato nel servizio; regola docente e timestamp restano da confermare | `database/02_seed.sql`, `PricingService.java`, report Sprint 2 |
+| D-002 | Tariffa | Seed: €50 uscita, €1,20/km, supplemento 25%; fascia attuale 20:00–08:00 in `Europe/Rome` | Implementato nel servizio; timestamp da confermare col docente | `database/02_seed.sql`, `PricingService.java`, report Sprint 2 |
 | D-003 | Timeout | Seed 10 minuti; scheduler applicativo gestisce scadenze live | Implementato; intervallo effettivo configurabile | SQL seed, `MissionExpiryScheduler.java` |
 | D-004 | Storico | `is_fixture` distingue righe didattiche dal lavoro live | Implementato | Schema SQL e servizi missione |
 | D-005 | Canale chatbot | Flusso a menu deterministico, senza AI obbligatoria | Implementato per console/Telegram; Gemini facoltativo non implementato | `chatbot/README.md` |
@@ -57,12 +57,12 @@ la lettura delle notifiche di H-009 è sostituita dalla riserva di D-015.
 
 ### H-002 — Fascia tariffaria notturna (ID originale D-002)
 
-- **Decisione applicata, da confermare col docente:** usare il timestamp di
-  accettazione della missione; fascia 22:00–08:00 (dal 04/11/2026, prima 20:00–08:00), moltiplicatore 1,25.
+- **Decisione storica (superata il 06/11/2026):** usare il timestamp di
+  accettazione della missione; fascia 22:00–08:00 (dal 04/11/2026 al 06/11/2026, prima 20:00–08:00), moltiplicatore 1,25.
 - **Fonte dichiarata nel record storico:** il foglio Excel precisa l'ora di
   accettazione; il PDF indica 20:00–8:00 ma non il timestamp da usare. L'inizio alle 22:00 è una
   scelta del team che si discosta dal PDF.
-- **Stato:** implementata in Sprint 2; conferma di business ancora aperta.
+- **Stato:** superata dalla decisione D-NIGHT-2026-11-06 sotto riportata; resta da verificare col docente il timestamp di riferimento.
 
 ### H-003 — Rounding (ID originale D-003)
 
@@ -146,3 +146,12 @@ la lettura delle notifiche di H-009 è sostituita dalla riserva di D-015.
 15 minuti e impronta per i retry. L'autorizzazione non è una prova di identità.
 **D-HARD-03:** notte dalle 22:00 incluse alle 08:00 escluse (prima dalle 20:00; lo storico non viene ricalcolato), Europe/Rome, ora di accettazione, BigDecimal/HALF_UP.
 Criterio operativo da convalidare col docente.
+
+## Aggiornamento del 06/11/2026 — D-NIGHT-2026-11-06
+
+- **Decisione operativa corrente:** fascia notturna **20:00 incluse – 08:00 escluse**, su ora di accettazione in `Europe/Rome`. Supplemento 25% confermato; importi con `HALF_UP`.
+- **Motivo:** richiesta di ripristinare la fascia riportata nel PDF del docente, in sostituzione della decisione temporanea del 04/11 (22:00–08:00).
+- **Implementazione:** seed `database/02_seed.sql` e migrazione additiva, ripetibile `database/12_night_rate_20.sql`; `PricingService` legge i parametri dal database.
+- **Storico:** nessun ricalcolo delle missioni concluse; 10 resta conservato per la tracciabilità delle decisioni passate.
+- **Test:** casi limite 19:59, 20:00, 21:59, 22:00, 07:59 e 08:00 in `MissionLifecycleTests`.
+- **Aperto:** conferma col docente dell'ora di accettazione quale timestamp tariffario.

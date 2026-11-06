@@ -33,7 +33,10 @@ psql -v ON_ERROR_STOP=1 -U fornitori_app -d fornitori -f database/08_cleanup_and
 psql -v ON_ERROR_STOP=1 -U fornitori_app -d fornitori -f database/09_integrity_and_indexes.sql
 psql -v ON_ERROR_STOP=1 -U fornitori_app -d fornitori -f database/10_night_rate_22.sql
 psql -v ON_ERROR_STOP=1 -U fornitori_app -d fornitori -f database/11_operativita_missioni.sql
+psql -v ON_ERROR_STOP=1 -U fornitori_app -d fornitori -f database/12_night_rate_20.sql
 ```
+
+La migrazione 12 imposta `pricing_config.night_start = '20:00'` senza modificare costi o flag delle missioni chiuse. Su un database operativo aggiornare solo la configurazione tramite lo script 12; la logica Java legge `night_start` e `night_end` dal DB (fuso `Europe/Rome`, accettazione inclusa alle 20:00, 08:00 esclusa).
 
 Su un database esistente applicare solo gli script mancanti, dopo un backup; per un ambiente già in uso seguire la
 [checklist](../deploy/CHECKLIST_AMBIENTE_REALE.md). Hibernate usa `validate`: senza lo script 11 l'avvio fallisce con

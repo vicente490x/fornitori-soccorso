@@ -30,6 +30,7 @@ Per portare in un ambiente reale la versione con operatività missioni, dashboar
 
    ```bash
    psql -d <database> -v ON_ERROR_STOP=1 -f database/11_operativita_missioni.sql
+    psql -d <database> -v ON_ERROR_STOP=1 -f database/12_night_rate_20.sql
    ```
 
 4. [ ] **Verificare la migrazione:** la query deve restituire 3 righe.

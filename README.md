@@ -83,7 +83,10 @@ psql -v ON_ERROR_STOP=1 -U fornitori_app -d fornitori -f database/08_cleanup_and
 psql -v ON_ERROR_STOP=1 -U fornitori_app -d fornitori -f database/09_integrity_and_indexes.sql
 psql -v ON_ERROR_STOP=1 -U fornitori_app -d fornitori -f database/10_night_rate_22.sql
 psql -v ON_ERROR_STOP=1 -U fornitori_app -d fornitori -f database/11_operativita_missioni.sql
+psql -v ON_ERROR_STOP=1 -U fornitori_app -d fornitori -f database/12_night_rate_20.sql
 ```
+
+La tariffa notturna è **20:00 incluse – 08:00 escluse**, fuso `Europe/Rome`, sulla data/ora di accettazione della missione. Per un database già esistente eseguire **solo** la migrazione `12_night_rate_20.sql` (dopo gli script precedenti); non ricalcolare le missioni già concluse.
 
 Hibernate è in `validate`: senza lo script 11 l'applicazione non si avvia. Su un database esistente applicare
 solo gli script mancanti, nell'ordine, dopo un backup; per un ambiente già in uso seguire la
