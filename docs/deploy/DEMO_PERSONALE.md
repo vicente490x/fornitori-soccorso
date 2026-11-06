@@ -83,3 +83,23 @@ Il portale consente accesso pubblico a due account sintetici prefissati.
 diverso da `fornitori_demo`. Non inserire dati reali: le modifiche sono condivise.
 Il chatbot Telegram non viene distribuito dal container web. I link dimostrativi
 rimandano al portale locale senza usare il bot della repository originale.
+
+
+## Bot Telegram sulla Preview del dominio stabile
+
+Il progetto Vercel mantiene il dominio `fornitori-soccorso-demo.vercel.app` associato
+al branch `main`. `TELEGRAM_BOT_TOKEN` è salvato come Secret per Preview;
+`FORNITORI_API_URL` è disponibile in Preview. Nessun token viene versionato.
+Il bot Telegram della demo usa un webhook HTTPS Java persistente su Neon
+(`database/13_telegram_webhook.sql`) e non il worker Python.
+
+Per attivarlo: verificare il deploy Preview Git del nuovo commit su `main`;
+verificare che il dominio stabile punti a **quel** deployment; applicare la sola migrazione 13
+al database `fornitori_demo`; aprire il sito per provocare il cold start e la
+registrazione del webhook; inviare `/start`, una targa demo, telefono, indirizzo,
+problema e `STATO` in Telegram. Controllare i log senza registrare i token.
+Il webhook controlla la firma del token segreto HTTP. Non cambiare il target
+a Production e non usare un daemon (i daemon Vercel sono orientati a Production).
+
+Nota: l'outbox notifiche accettazione/conclusione del vecchio bot Python
+richiede un dispatcher dedicato; non è garantita in Preview con questo webhook.
